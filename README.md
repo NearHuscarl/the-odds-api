@@ -53,7 +53,7 @@ theOddsAPI.getOdds({
 ### Get sports
 
 ```js
-theOddsAPI.getSports().then((data) => {
+theOddsAPI.getSports({ all: true }).then((data) => {
     console.log(JSON.stringify(data, null, 4));
 });
 ```

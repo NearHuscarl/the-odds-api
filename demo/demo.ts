@@ -10,7 +10,7 @@ if (!process.env.YOUR_API_KEY) {
 
 const theOddsAPI = new TheOddsAPI(process.env.YOUR_API_KEY);
 
-theOddsAPI.getSports().then((data) => {
+theOddsAPI.getSports({ all: true }).then((data) => {
     console.log(JSON.stringify(data, null, 4));
 });
 

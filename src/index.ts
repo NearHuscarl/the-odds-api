@@ -2,7 +2,10 @@
 
 import fetch from 'node-fetch';
 import querystring, { ParsedUrlQueryInput } from 'querystring';
-import { SportParams } from './params';
+import {
+    SportParams,
+    OddParams
+} from './params';
 import {
     SportResult,
     OddResult,
@@ -51,11 +54,14 @@ class TheOddsAPI {
             });
     }
 
-    getSports(headerData = false): Promise<SportResult> {
-        return this._getResult('/v3/sports', {}, headerData);
+    getSports(params: SportParams | null = null, headerData = false): Promise<SportResult> {
+        // Since the only parameter (all) is optional the params can be omitted entirely
+        if (!params) params = {};
+        params.all = params.all ? 1 : 0;
+        return this._getResult('/v3/sports', params, headerData);
     }
 
-    getOdds(params: SportParams, headerData = false): Promise<OddResult> {
+    getOdds(params: OddParams, headerData = false): Promise<OddResult> {
         return this._getResult('/v3/odds', params, headerData);
     }
 }

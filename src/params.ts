@@ -3,7 +3,11 @@ import Region from "./region";
 import Sport from "./sport";
 
 export interface SportParams {
-    sport?: Sport | string,
-    region?: Region,
+    all?: boolean | number,
+}
+
+export interface OddParams {
+    sport: Sport | string,
+    region: Region,
     mkt?: Market,
 }

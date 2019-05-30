@@ -31,7 +31,7 @@ describe('TheOddsAPI', function() {
 			const _request = this.sandbox.stub(theOddsAPI, '_request');
 	
 			_request
-				.withArgs('https://api.the-odds-api.com/v3/sports?apiKey=YOUR_API_KEY')
+				.withArgs('https://api.the-odds-api.com/v3/sports?apiKey=YOUR_API_KEY&all=0')
 				.resolves({ result: sportResult.data, header: api });
 	
 			expect(theOddsAPI.getSports()).to.eventually.eql({ data: sportResult.data });
@@ -57,18 +57,18 @@ describe('TheOddsAPI', function() {
 	});
 	
 	
-	describe('theOddsAPI.getOdds', function () {
+	describe('theOddsAPI.getSports', function () {
 		it('Get results with or without additional header data', function () {
 			const _request = this.sandbox.stub(theOddsAPI, '_request');
 			const resultWithHeader = { data: oddResult.data, api };
 			const resultWithoutHeader = { data: oddResult.data };
 	
 			_request
-				.withArgs('https://api.the-odds-api.com/v3/odds?apiKey=YOUR_API_KEY')
+				.withArgs('https://api.the-odds-api.com/v3/sports?apiKey=YOUR_API_KEY&all=1')
 				.resolves({ result: oddResult.data, header: api });
 	
-			expect(theOddsAPI.getOdds({}, true)).to.eventually.be.eql(resultWithHeader);
-			expect(theOddsAPI.getOdds({}, false)).to.eventually.be.eql(resultWithoutHeader);
+			expect(theOddsAPI.getSports({ all: true }, true)).to.eventually.be.eql(resultWithHeader);
+			expect(theOddsAPI.getSports({ all: true }, false)).to.eventually.be.eql(resultWithoutHeader);
 		});
 	});
 });

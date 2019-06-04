@@ -7,7 +7,7 @@ export interface SportParams {
 }
 
 export interface OddParams {
-    sport: Sport | string,
+    sport: Sport,
     region: Region,
     mkt?: Market,
 }

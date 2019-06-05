@@ -42,7 +42,7 @@ class TheOddsAPI {
         const url = this.baseUrl + endpoint;
         const queryInput: ParsedUrlQueryInput | {} = { apiKey: API_KEY, ...options };
         const query = querystring.stringify(queryInput);
-        const urlWithQuery = query ? `${url}?${query}` : url;
+        const urlWithQuery = `${url}?${query}`;
 
         return this._request(urlWithQuery)
             .then((data) => {
